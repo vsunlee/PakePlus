@@ -1,22 +1,72 @@
+
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="styles.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PakePlus App</title>
-        <script type="module" src="/main.js" defer></script>
-    </head>
-
-    <body>
-        <main class="container">
-            <h1>Welcome to PakePlus</h1>
-
-            <form class="row" id="greet-form">
-                <input id="greet-input" placeholder="Enter a name..." />
-                <button type="submit">Greet</button>
-            </form>
-            <p id="greet-msg"></p>
-        </main>
-    </body>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞行棋</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="config-panel">
+        <h3>游戏配置</h3>
+        <div class="form-group">
+            <label>地图格子数量:</label>
+            <input type="number" id="cellCount" min="8" max="50" value="24">
+        </div>
+        <div class="form-group">
+            <label>玩家1名称:</label>
+            <input type="text" id="player1Name" value="红方">
+        </div>
+        <div class="form-group">
+            <label>玩家2名称:</label>
+            <input type="text" id="player2Name" value="蓝方">
+        </div>
+        <div class="form-group">
+            <label>事件配置(每行一个事件):</label>
+            <textarea id="eventConfig" rows="6">前进:2
+暂停
+后退:3
+交换位置
+恭喜发财!
+新年快乐!
+前进:2
+暂停
+后退:3
+交换位置
+恭喜发财!
+新年快乐!
+前进:2
+暂停
+后退:3
+交换位置
+恭喜发财!
+新年快乐!
+前进:2
+暂停
+后退:3
+交换位置
+恭喜发财!
+新年快乐!</textarea>
+        </div>
+        <button id="applyConfig">应用配置</button>
+    </div>
+    <div class="game-container">
+        <div class="board"></div>
+        <div class="dice"></div>
+        <div class="players">
+            <div class="player red" data-player="1">
+                <span class="player-name">红方</span>
+            </div>
+            <div class="player blue" data-player="2">
+                <span class="player-name">蓝方</span>
+            </div>
+        </div>
+        <div class="event-popup hidden">
+            <div class="event-content"></div>
+            <div class="countdown"></div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
 </html>
