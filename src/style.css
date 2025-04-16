@@ -1,0 +1,280 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: rgb(240, 200, 160);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.config-panel {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-right: 20px;
+    width: 300px;
+}
+
+.config-panel h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#applyConfig {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+#applyConfig:hover {
+    background-color: #45a049;
+}
+
+.game-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+
+.board {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    background-image: 
+        radial-gradient(circle, transparent 65%, #f0a1a8 65%),
+        conic-gradient(#7db9de 0% 50%, #e3916e 50% 100%);
+}
+
+.cell {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    border: 2px solid #f5f5f5;
+}
+
+.cell.event-cell {
+    border-color: #ff9800;
+    background-color: #fff3e0;
+}
+
+.cell::after {
+    content: attr(data-index);
+    color: #757575;
+}
+
+.player {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-name {
+    position: absolute;
+    top: -40px;
+    white-space: nowrap;
+    font-size: 20px;
+    color: rgba(240, 144, 0, 0.858);
+    background-color: rgba(255,255,255,0.9);
+    padding: 2px 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(240, 164, 0, 0.798);
+}
+
+.player.red {
+    background-color: rgb(255, 82, 82, 0.771);
+}
+
+.player.blue {
+    background-color: rgba(39, 104, 209, 0.711);
+}
+
+.dice {
+    /* position: absolute;
+    /* bottom: 20px;
+    left: 50%; */
+    /* top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); */ 
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background-color: #f0a1a8;
+    border-radius: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    z-index: 20;
+    transition: all 0.2s ease;
+}
+
+.event-content {
+    font-size: 20px;
+}
+
+.event-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px 40px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    z-index: 100;
+    animation: popIn 0.3s ease-out;
+    min-width: 250px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    font-size: 80px;
+    cursor: pointer;
+    color: #757575;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.event-popup.hidden {
+    display: none;
+}
+
+.countdown {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+.player.moving {
+    animation: pulse 0.3s infinite alternate;
+    filter: drop-shadow(0 0 8px rgba(255, 191, 0, 0.788));
+}
+
+@keyframes pulse {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.player {
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1.5);
+}
+
+@keyframes diceRoll {
+    /* 0% { transform: translateX(-50%) rotate(0deg) scale(1); }
+    25% { transform: translateX(-50%) rotate(90deg) scale(1.1); }
+    50% { transform: translateX(-50%) rotate(180deg) scale(1); }
+    75% { transform: translateX(-50%) rotate(270deg) scale(1.1); }
+    100% { transform: translateX(-50%) rotate(360deg) scale(1); } */
+
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    25% { transform: translate(-50%, -50%) rotate(90deg) scale(1.1); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1); }
+    75% { transform: translate(-50%, -50%) rotate(270deg) scale(1.1); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+  }
+  
+  .dice.rolling {
+    /* animation: diceRoll 0.5s infinite;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2); */
+
+    animation: diceRoll 0.5s infinite;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
